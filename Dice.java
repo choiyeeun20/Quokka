@@ -23,8 +23,7 @@ public class Dice {
 	System.out.println("컴퓨터의 결과 :짝");
 	String result2 = "틀림";
 	if(expect.equals(result)) {
-		result2 = "맞음";
-		}
+		result2 = "맞음";	}
 	System.out.println(String.format("결과 : %s", result2));
 	}
 
