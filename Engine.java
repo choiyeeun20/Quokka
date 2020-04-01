@@ -6,7 +6,11 @@ public class Engine {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		while(true) {
-			System.out.println("0. 종료 1.가위바위보 2.주사위 홀짝 맞추기");
+			System.out.println("0. 종료 "
+					+ "1. 가위바위보 "
+					+ "2. 주사위 홀짝 맞추기"
+					+ "3. 1부터 100까지의 합"
+					+ "4 ");
 			int flag = scanner.nextInt();
 			switch(flag) {
 			case 0: System.out.println("종료");return;
