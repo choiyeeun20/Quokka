@@ -9,7 +9,7 @@ public class Sum1To5 {
 			for(int i=1; i<=5; i++) {
 			System.out.println(i);
 				sum +=i;}
-			System.out.println(String.format("%d", sum));
+			System.out.println(String.format(">>>>>%d", sum));
 			}
 			}
 			

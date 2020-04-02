@@ -15,6 +15,10 @@ public class RPSGame {
 			 String result = "";
 			if(user==com) { 
 				System.out.println("비김");	
+			}else if (user > com) {
+				System.out.println("승");
+			}else {
+				System.out.println("패");
 			}
 			
 		}
