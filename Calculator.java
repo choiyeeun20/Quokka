@@ -1,23 +1,24 @@
 package com.jse.app;
-import java.util.Scanner;
+
 public class Calculator {
-	public static void main(String[] args) {
-		// 첫번째 수 입력
-		// 두번째 수 입력
-		// 두 수의 합은?(정수)
-		System.out.print("첫번째 수 입력");
-		Scanner scanner = new Scanner(System.in);
-		int a = scanner.nextInt();
-		System.out.println("두번째 수 입력");
-		Scanner scanner2 = new Scanner(System.in);
-		int b = scanner2.nextInt();
-		System.out.println("새번째 수 입력");
-		Scanner scanner3 = new Scanner(System.in);
-		int c = scanner3.nextInt();
-		System.out.println("네번재 수 입력");
-		Scanner scanner4 = new Scanner(System.in);
-		int d = scanner4.nextInt();
-		int e = a+b+c+d;
-		System.out.println("네수의 합은" + e);
+	private int num1;
+	private int num2;
+	 
+	public void setNum1(int num1) {
+		this.num1 = num1;
+	 }
+	public int getNum1() {
+		return num1;
+	}
+	public void setNum2(int num2) {
+		this.num1 = num2;	
+	}
+	public int getNum2() {
+		return num2;
+		
+	}
+public int calculate () { 
+		int c = num1+num2;
+		return c;
 	}
 }
