@@ -22,17 +22,20 @@ public class UserController {
 	@Autowired UserService userService;
 	@PostMapping("/join")
 	public Messenger join(@RequestBody User user) {
+		System.out.println("가입된 정보:"+user);
 		int count = userService.count();
-		userService.add(user);
-		return (userService.count() == count+1) ? Messenger.SUCCESS:Messenger.FAIL ;
+		userService.saveFile(user);
+		//return (userService.count() == count+1) ? Messenger.SUCCESS:Messenger.FAIL ;
+		return Messenger.SUCCESS;
 	}
 	@GetMapping("/list")
 	public List<User>list(){
-		return userService.list();
+		return userService.readFile();
 	}
 		
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody User user) {
+		System.out.println("로그인된 정보:"+ user);
 		Map<String, Object> returnMap = new HashMap<>();
 		User loginedUser = userService.login(user);
 		if(loginedUser != null) {
@@ -60,6 +63,11 @@ public class UserController {
 	public Messenger remove(@PathVariable String userid) {
 		System.out.println("delete 정보 :::" +userid );
 		return (userService.remove(userid)) ? Messenger.SUCCESS: Messenger.FAIL;
+		
+	}
+	@GetMapping("/idsearch/{userid}")
+		public Messenger idSearch(@PathVariable String userid) {
+			return (userService.idSearch(userid))? Messenger.SUCCESS:Messenger.FAIL;
 		
 	}
 	

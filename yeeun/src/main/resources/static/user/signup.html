@@ -87,7 +87,7 @@ footer {
     <label>NAME</label> <br>
     <input id="name" type ="text"/> <br>
     <label>ID	</label> <br>
-    <input id ="userid" type ="text"/><br> 
+    <input id ="userid" type ="text"/><input id = "idsearch" type = "button" value = "중복확인"/><br> 
     <label>PASSWORD	</label> <br>
     <input id = "password" type ="text"/> <br>
     <label>SSN	</label> <br>
@@ -107,6 +107,14 @@ footer {
 </footer>
 
 <script>
+$('#idsearch')
+	.css('cursor','pointer')
+	.click(e=>{
+	e.preventDefault()
+	$.getJSON('/user/idsearch/'+$('#userid').val(),d=>{
+		alert((d==='SUCCESS'?'사용가능한 아이디 입니다.' : '아이디 중복입니다'))
+	})
+	})
 $('#home_a')
 	.css('cursor','pointer')
 	.click(e=>{
@@ -118,7 +126,7 @@ $('#join-button')
 	.click(e=>{
 	e.preventDefault()
 	$.ajax({
-		url : '/user/join', /*UserController의 join메서드와 연결됨*/
+		url : '/user/join', 
 		type : 'post',
 		data : JSON.stringify(
 			{name:	  $('#name').val(),
