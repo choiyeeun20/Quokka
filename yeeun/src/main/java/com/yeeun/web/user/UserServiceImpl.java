@@ -123,9 +123,9 @@ public class UserServiceImpl implements UserService{
 		for(int i =0;i < list.size(); i++) {
 			u = new User();
 			String[] arr = list.get(i).split(",");
-			u.setUserid(arr[0]);
-			u.setPassword(arr[1]);
-			u.setName(arr[2]);
+			u.setName(arr[0]);
+			u.setUserid(arr[1]);
+			u.setPassword(arr[2]);
 			u.setSsn(arr[3]);
 			u.setAddr(arr[4]);
 			userlist.add(u);
