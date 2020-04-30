@@ -16,7 +16,7 @@ public enum Data {
 				+File.separator+"yeeun"+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"static"+File.separator+
 				"user"+File.separator;break;
 		case CSV : returnValue = ".csv";break;
-		case LIST : returnValue = ".list";break;
+		case LIST : returnValue = "list";break;
 		default:
 			break;
 		}
