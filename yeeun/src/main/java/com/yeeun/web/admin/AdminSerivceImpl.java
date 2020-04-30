@@ -1,81 +1,55 @@
 package com.yeeun.web.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service	
 public class AdminSerivceImpl implements AdminService{
-	private Admin [] admins;
-	private int count;
-	
-	public AdminSerivceImpl() {
-		admins = new Admin[5];
-		count = 0;
-	}
+	@Autowired AdminDao adminDao;
 
 	@Override
-	public void add(Admin admin) {
-		admins[count] = admin;
-		count++;
-		
+	public void register(Admin admin) {
+		System.out.println("2. AdminServiceImpl register "+admin);
+		admin.setEmployNumber(createEmployNumber());
+		admin.setPasswd("1");
+		admin.setRegisterDate(createCurrentDate());
+		adminDao.insert(admin);
 	}
 
-	@Override
-	public Admin[] list() {
-		return admins;
+	private String createCurrentDate() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	}
-	
-	@Override
-	public Admin detail(String userid) {
-		Admin returnDetail = null;
-		for(int i=0;i<count;i++) {
-			if(userid.equals(admins[i].getUserid())) {
-				returnDetail = admins[i];
-				break;
-			}
+
+	private String createEmployNumber() {
+		String startNum = "";
+		for(int i=0;i<4;i++) {
+			startNum += String.valueOf((int)(Math.random()*10));
 		}
-		return returnDetail;
-	}
-	
-
-	@Override
-	public int Count() {
-		return count;
+		return startNum;
 	}
 
 	@Override
-	public void update(Admin admin) {
-		for(int i=0;i<count;i++) {
-			if(admin.getUserid().equals(admins[i].getUserid())) {
-				admins[i].setPassword(admin.getPassword());
-				break;
-			}
-		}
+	public List<Admin> findAll() {
+		return adminDao.selectAll();
 	}
 
 	@Override
-	public void delete(Admin admin) {
-		for(int i=0;i<count;i++) {
-			if(admin.getUserid().equals(admins[i].getUserid())
-					&& admin.getPassword().equals(admins[i].getPassword())){
-				admins[i] = admins[count-1];
-				admins[count-1] =null;
-				count--;
-				}
+	public Admin findOne(String employNumber) {
+		return adminDao.selectOne(employNumber);
 	}
-		}
 
 	@Override
-	public boolean login(Admin admin) {
-		boolean ok = false;
-		for(int i=0;i<count;i++) {
-			if(admin.getUserid().equals(admins[i].getUserid())
-					&& admin.getPassword().equals(admins[i].getPassword())){
-
-				ok = true; 
-				break;
-				}
-		}
-		return ok;
+	public void modify(Admin admin) {
+		adminDao.update(admin);
 	}
-	
+
+	@Override
+	public void remove(Admin admin) {
+		adminDao.delete(admin);
+	}
+
 }

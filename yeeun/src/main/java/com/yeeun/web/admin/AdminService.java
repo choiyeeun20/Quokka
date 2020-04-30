@@ -1,14 +1,19 @@
 package com.yeeun.web.admin;
 
-public interface AdminService {
-	
-	public void add (Admin admin);
-	public Admin [] list();
-	public Admin detail(String userid);
-	public int Count();
-	public boolean login(Admin admin);
-	public void update(Admin admin);
-	public void delete(Admin admin);
+import java.util.List;
 
+public interface AdminService {
+
+	public void register(Admin admin);
+
+	public List<Admin> findAll();
+
+	public Admin findOne(String employNumber);
+
+	public void modify(Admin admin);
+
+	public void remove(Admin admin);
+	
+	
 	
 }
